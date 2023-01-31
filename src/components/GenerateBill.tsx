@@ -165,7 +165,7 @@ console.log(option)
             type="submit"
             style={{ float: "right" }}
           >
-            Generate Bill
+            Generate Details
           </button>
         </div>
       </form>
@@ -197,7 +197,7 @@ console.log(option)
             type="submit"
             style={{ float: "right" }}
           >
-            Generate Bill
+            Generate Details
           </button>
         </div>
       </form>
