@@ -18,7 +18,7 @@ const GenerateBill = () => {
     state.data.map((x: any) => {
       if (x && x["CustomerID"] && "CustomerID" in x){customerOptions = [...customerOptions, x["CustomerID"].toString()]};
       if (x && x["Description"] && "Description" in x){descriptionsOptions = [...descriptionsOptions, x["Description"].toString()]};
-      if (x && x['"Country "'] && '"Country "' in x){countriesOption = [...countriesOption, x['"Country "'].toString()]};
+      if (x && x["Country"] && "Country" in x){countriesOption = [...countriesOption, x["Country"].toString()]};
     });
 
      customerOptions = [...new Set([...customerOptions])];
@@ -50,7 +50,7 @@ const GenerateBill = () => {
         break;
       case 3:
         {
-          val=e.currentTarget.order_item.value
+          val=e.currentTarget.countries.value
           setTable([...tableGenerate(val,3)])
           setPage(3);
         }
@@ -77,10 +77,18 @@ const GenerateBill = () => {
           myData[0].total_Items+=parseInt(x.Quantity)
       }
     });
-  
 }
 if(pg==3){
-
+  state.data.map((x: any, i : number) => {
+    if (
+      x &&
+      x["Country"] &&
+      x["Country"].toString() == str
+    )
+      {
+        myData.push({Country:str,Items:x.Description,Quantity:x.Quantity})
+    }
+  });
 }
 return myData
   }
@@ -172,7 +180,7 @@ console.log(option)
               Countries
             </label>
             <select
-              name="customerId"
+              name="countries"
               className="form-select"
               aria-label="Default select example"
             >
